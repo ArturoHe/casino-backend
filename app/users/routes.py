@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from sqlmodel import Session
 
 from app.database import get_session
-from app.profile.services import get_profile_by_username
+from app.users.services import get_profile_by_username
 from app.model import User
 
 router = APIRouter(prefix="/profile", tags=["Profile"])

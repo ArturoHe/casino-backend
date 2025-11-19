@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 
 from app.database import engine
 from app.auth.routes import router as auth_router
-from app.profile.routes import router as profile_router  # <--- nuevo
+from app.users.routes import router as profile_router  # <--- nuevo
 
 
 def init_db():
