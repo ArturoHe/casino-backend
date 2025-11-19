@@ -16,3 +16,27 @@ source venv/bin/activate   # Linux
 pip install -r requirements.txt
 
 uvicorn app.main:app --reload
+
+
+
+Endpoints principales
+
+Auth
+
+POST /auth/signup → Crear usuario
+
+POST /auth/login → Login y generación de JWT
+
+GET /auth/me → Consultar usuario desde token
+
+GET /Debug/users → Listar todos los usuarios
+
+
+Variables de entorno
+
+Crear archivo .env en la raíz:
+
+SECRET_KEY=tu_clave_secreta
+
+DATABASE_URL=sqlite:///./casino.db
+
