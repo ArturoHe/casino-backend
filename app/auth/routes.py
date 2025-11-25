@@ -41,6 +41,12 @@ def signup(
     email = payload.get("email")
     username = payload.get("username")
     password = payload.get("password")
+    name = payload.get("nombres")
+    last_name = payload.get("apellidos")
+    cellphone_number = payload.get("telefono")
+    born_date = payload.get("fecha_nacimiento")
+    id = payload.get("cedula")
+    type_id = payload.get("tipo_documento")
 
     user_exists = get_user(db, username)
     if user_exists:
@@ -54,6 +60,12 @@ def signup(
         password_hash=hashed,
         role="Jugador",
         is_Active=True,
+        nombres=name,
+        apellidos=last_name,
+        telefono=cellphone_number,
+        fecha_nacimiento=born_date,
+        tipo_documento=type_id,
+        numero_documento=id
     )
 
     db.add(new_user)
