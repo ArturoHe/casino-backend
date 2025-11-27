@@ -28,7 +28,7 @@ def get_profile(username: str, db: Session = Depends(get_session)):
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
 
     return PerfilResponse(
-        nombres=user.nombres,
+        nombres=user.name,
         apellidos=user.apellidos,
         usuario=user.username,
         correo_electronico=user.email,
