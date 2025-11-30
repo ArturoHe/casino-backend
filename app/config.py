@@ -10,3 +10,6 @@ SECRET_KEY = getenv("SECRET_KEY", "dev_secret_key_123")
 ALGORITHM = "HS256"
 
 DATABASE_URL = getenv("DATABASE_URL", "sqlite:///./casino.db")
+
+
+ADMIN_TOKEN = getenv("ADMIN_TOKEN", "changeme_admin_token")
