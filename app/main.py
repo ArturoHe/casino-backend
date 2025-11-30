@@ -11,6 +11,10 @@ from app.roulette.routes import router as roulette_router  # <- nueva línea
 
 from app.users.routes import router as profile_router  # <--- nuevo 
 
+from app.admin.routes import router as admin_router
+
+from app.credits.routes import router as credits_router
+
 
 def init_db():
     SQLModel.metadata.create_all(engine)
@@ -41,6 +45,10 @@ app.include_router(auth_router)
 app.include_router(profile_router)   # <--- nuevo
 
 app.include_router(roulette_router)
+
+app.include_router(admin_router)
+
+app.include_router(credits_router)
 
 
 @app.get("/")

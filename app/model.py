@@ -59,3 +59,16 @@ class Spin(SQLModel, table=True):
     payout: float = Field(default=0.0)           # ganancia neta o -stake
 
     session: Optional[RouletteSession] = Relationship(back_populates="spins")
+
+class CreditRequest(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="user.id")
+    amount: float
+    status: str = Field(default="pending")  # pending / approved / denied
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    reviewed_at: Optional[datetime] = None
+    reviewer_id: Optional[int] = Field(default=None, foreign_key="user.id")
+    note: Optional[str] = None
+
+    # relación opcional para uso en consultas
+    # user: Optional[User] = Relationship(back_populates="credit_requests")
