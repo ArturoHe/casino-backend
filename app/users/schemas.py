@@ -4,7 +4,7 @@ from datetime import date
 
 
 class UserUpdateConctact(BaseModel):
-    email: Optional[EmailStr] = str
+    email: Optional[EmailStr] = None
     telefono: Optional[str] = None
 
 

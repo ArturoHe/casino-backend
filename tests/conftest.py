@@ -31,7 +31,7 @@ def client_fixture(session: Session):
 
 @pytest.fixture
 def auth_headers(client: TestClient):
-    # Crear usuario de prueba
+    
     client.post("/auth/signup", json={
         "username": "testuser",
         "password": "testpass123",
@@ -44,6 +44,23 @@ def auth_headers(client: TestClient):
     login_response = client.post("/auth/login", json={
         "username": "testuser", 
         "password": "testpass123"
+    })
+    token = login_response.json()["access_token"]
+    headers = {"Authorization": f"Bearer {token}"}
+
+    # Ensure test user has some balance for game tests
+    client.post("/v1/roulette/user/deposit", headers=headers, json={"amount": 100.0})
+    return headers
+
+
+@pytest.fixture
+def admin_headers(client: TestClient):
+    # Create admin user if not exists
+    client.get("/auth/create-admin")
+    # Login as admin
+    login_response = client.post("/auth/login", json={
+        "username": "admin",
+        "password": "admin"
     })
     token = login_response.json()["access_token"]
     return {"Authorization": f"Bearer {token}"}

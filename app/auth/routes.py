@@ -57,6 +57,10 @@ def signup(
     if user_exists:
         raise HTTPException(status_code=400, detail="El usuario ya existe")
 
+    # Validaciones mínimas obligatorias
+    if not username or not password or not email:
+        raise HTTPException(status_code=400, detail="Faltan datos")
+
     if isinstance(payload.get("born_date"), str):
         born_date = datetime.strptime(
             payload.get("born_date"), "%Y-%m-%d"
@@ -102,7 +106,7 @@ def login(
 
     if not user:
         raise HTTPException(
-            status_code=404, details="Credenciales incorrectas")
+            status_code=404, detail="Credenciales incorrectas")
 
     token = create_access_token({"sub": user.username})
 
