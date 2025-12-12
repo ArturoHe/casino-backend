@@ -13,17 +13,17 @@ class User(SQLModel, table=True):
     username: str
     password_hash: str
 
-    # ===== NUEVOS CAMPOS DE PERFIL =====
+   
 
-    name: str
-    apellidos: Optional[str] = None        # "González"
-    telefono: Optional[str] = None         # "3001234569"
+    name: Optional[str] = None
+    apellidos: Optional[str] = None        
+    telefono: Optional[str] = None        
     fecha_nacimiento: Optional[date] = None
-    tipo_documento: Optional[str] = None   # "CC", "TI", etc.
-    numero_documento: Optional[str] = None  # "1010000234"
+    tipo_documento: Optional[str] = None   
+    numero_documento: Optional[str] = None 
 
     # ===== NUEVOS CAMPOS PARA LA PARTE DERECHA =====
-    saldo: float = Field(default=500.0)
+    saldo: float = Field(default=0.0)
     ganancias_totales: float = Field(default=0.0)
     perdidas_totales: float = Field(default=0.0)
 
