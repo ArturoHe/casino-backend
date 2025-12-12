@@ -79,14 +79,23 @@ def signup(
         telefono=cellphone_number,
         fecha_nacimiento=born_date,
         tipo_documento=type_id,
-        numero_documento=id
+        numero_documento=id,
+        saldo=1000.0
     )
 
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
 
-    return {"message": "Usuario creado exitosamente", "user_id": new_user.id}
+    token = create_access_token({"sub": new_user.username})
+
+    return {
+        "message": "Usuario creado exitosamente",
+        "access_token": token,
+        "token_type": "bearer",
+        "username": new_user.username,
+        "role": new_user.role
+    }
 
 
 @router.post("/login")
