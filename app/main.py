@@ -5,6 +5,7 @@ from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import engine
+from app.model import User, RouletteSession, Spin, CreditRequest, SlotSession, SlotSpin  # Import all models
 from app.auth.routes import router as auth_router
 
 from app.games.slot_machine.routes import router as slot_router
